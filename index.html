@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for digital display and standard text -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator">
+        <div class="top-brand-area">
+            <div class="brand">
+                <span class="logo-text">CASIO</span>
+                <span class="model-text">fx-991EX</span>
+            </div>
+            <div class="solar-panel">
+                <div class="solar-cell"></div>
+                <div class="solar-cell"></div>
+                <div class="solar-cell"></div>
+                <div class="solar-cell"></div>
+            </div>
+        </div>
+
+        <div class="screen-container">
+            <div class="screen">
+                <div class="status-bar">
+                    <span>D</span>
+                    <span>Math</span>
+                </div>
+                <div class="display">
+                    <div id="expression" class="expression"></div>
+                    <div id="result" class="result">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keyboard">
+            <div class="top-row">
+                <div class="btn-col"><button class="small-btn shift" data-action="shift">SHIFT</button></div>
+                <div class="btn-col"><button class="small-btn alpha" data-action="alpha">ALPHA</button></div>
+                
+                <div class="d-pad-container">
+                    <div class="d-pad">
+                        <button class="d-pad-btn up">▲</button>
+                        <button class="d-pad-btn down">▼</button>
+                        <button class="d-pad-btn left">◀</button>
+                        <button class="d-pad-btn right">▶</button>
+                        <div class="d-pad-center"></div>
+                    </div>
+                </div>
+                
+                <div class="btn-col"><button class="small-btn mode">SETUP</button></div>
+                <div class="btn-col"><button class="small-btn on">ON</button></div>
+            </div>
+
+            <div class="scientific-keys">
+                <!-- Row 1 -->
+                <button class="sci-btn" data-val="CALC">CALC</button>
+                <button class="sci-btn" data-val="∫(">∫</button>
+                <button class="sci-btn" data-val="x">x</button>
+                <button class="sci-btn" data-val="^-1">x⁻¹</button>
+                <button class="sci-btn" data-val="log(">log₂□</button>
+                <button class="sci-btn" data-val="^3">x³</button>
+                
+                <!-- Row 2 -->
+                <button class="sci-btn" data-val="/">■/□</button>
+                <button class="sci-btn" data-val="√(">√</button>
+                <button class="sci-btn" data-val="^2">x²</button>
+                <button class="sci-btn" data-val="^">x^■</button>
+                <button class="sci-btn" data-val="log(">log</button>
+                <button class="sci-btn" data-val="ln(">ln</button>
+                
+                <!-- Row 3 -->
+                <button class="sci-btn" data-val="-">(-)</button>
+                <button class="sci-btn" data-val="°">°' "</button>
+                <button class="sci-btn" data-val="hyp">hyp</button>
+                <button class="sci-btn" data-val="sin(">sin</button>
+                <button class="sci-btn" data-val="cos(">cos</button>
+                <button class="sci-btn" data-val="tan(">tan</button>
+                
+                <!-- Row 4 -->
+                <button class="sci-btn" data-val="RCL">RCL</button>
+                <button class="sci-btn" data-val="ENG">ENG</button>
+                <button class="sci-btn" data-val="(">(</button>
+                <button class="sci-btn" data-val=")">)</button>
+                <button class="sci-btn" data-val="S<=>D">S⇔D</button>
+                <button class="sci-btn" data-val="M+">M+</button>
+            </div>
+
+            <div class="numpad-keys">
+                <!-- Row 1 -->
+                <button class="num-btn" data-val="7">7</button>
+                <button class="num-btn" data-val="8">8</button>
+                <button class="num-btn" data-val="9">9</button>
+                <button class="del-btn" data-action="del">DEL</button>
+                <button class="ac-btn" data-action="ac">AC</button>
+                
+                <!-- Row 2 -->
+                <button class="num-btn" data-val="4">4</button>
+                <button class="num-btn" data-val="5">5</button>
+                <button class="num-btn" data-val="6">6</button>
+                <button class="op-btn" data-val="×">×</button>
+                <button class="op-btn" data-val="÷">÷</button>
+                
+                <!-- Row 3 -->
+                <button class="num-btn" data-val="1">1</button>
+                <button class="num-btn" data-val="2">2</button>
+                <button class="num-btn" data-val="3">3</button>
+                <button class="op-btn" data-val="+">+</button>
+                <button class="op-btn" data-val="-">-</button>
+                
+                <!-- Row 4 -->
+                <button class="num-btn" data-val="0">0</button>
+                <button class="num-btn" data-val=".">.</button>
+                <button class="exp-btn" data-val="×10^">×10ˣ</button>
+                <button class="ans-btn" data-action="ans">Ans</button>
+                <button class="eq-btn" data-action="calc">=</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

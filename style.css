@@ -1,0 +1,315 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    user-select: none;
+}
+
+body {
+    background-color: #e0e5ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calculator {
+    background: #1a1a1a;
+    background: linear-gradient(135deg, #2b2b2b, #111111);
+    width: 380px;
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: 
+        10px 10px 20px rgba(0,0,0,0.5),
+        -5px -5px 15px rgba(255,255,255,0.1),
+        inset 0 0 10px rgba(0,0,0,0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Carbon fiber texture illusion */
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(#333 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.top-brand-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    padding: 0 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.brand {
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.model-text {
+    font-size: 10px;
+    font-style: italic;
+    color: #a0a0a0;
+}
+
+.solar-panel {
+    background: #2a1b1b;
+    width: 100px;
+    height: 25px;
+    border-radius: 3px;
+    display: flex;
+    padding: 2px;
+    gap: 2px;
+    border: 1px solid #000;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+}
+
+.solar-cell {
+    flex: 1;
+    background: #4a2b2b;
+    background: linear-gradient(to bottom, #5a3b3b, #2a1b1b);
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.screen-container {
+    background: #a5b3a3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 
+        inset 2px 2px 5px rgba(0,0,0,0.3),
+        inset -1px -1px 3px rgba(255,255,255,0.3),
+        0 2px 4px rgba(0,0,0,0.5);
+    border: 2px solid #000;
+    position: relative;
+    z-index: 1;
+}
+
+.screen {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.status-bar {
+    font-size: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+}
+
+.display {
+    text-align: right;
+    font-family: 'Share Tech Mono', monospace;
+    color: #111;
+}
+
+.expression {
+    font-size: 16px;
+    min-height: 20px;
+    word-break: break-all;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.result {
+    font-size: 32px;
+    min-height: 38px;
+    font-weight: bold;
+}
+
+.keyboard {
+    position: relative;
+    z-index: 1;
+}
+
+/* Top Row */
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.small-btn {
+    width: 40px;
+    height: 25px;
+    border-radius: 12.5px;
+    border: none;
+    font-size: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #666, #444);
+    color: white;
+    box-shadow: 0 3px 0 #222, 0 4px 4px rgba(0,0,0,0.5);
+    transition: all 0.1s;
+}
+
+.small-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #222, 0 2px 2px rgba(0,0,0,0.5);
+}
+
+/* Shift and Alpha text hints can be added using ::before */
+.shift::before {
+    content: 'SHIFT';
+    position: absolute;
+    top: -15px;
+    font-size: 8px;
+    color: #e6b800;
+}
+.alpha::before {
+    content: 'ALPHA';
+    position: absolute;
+    top: -15px;
+    font-size: 8px;
+    color: #d32f2f;
+}
+.btn-col { position: relative; }
+
+/* D-Pad */
+.d-pad-container {
+    width: 80px;
+    height: 60px;
+    position: relative;
+    background: #333;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.1);
+    border: 2px solid #111;
+}
+
+.d-pad {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.d-pad-btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: #a0a0a0;
+    font-size: 10px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.d-pad-btn:active {
+    color: white;
+}
+.d-pad-btn.up { top: 5px; left: 50%; transform: translateX(-50%); }
+.d-pad-btn.down { bottom: 5px; left: 50%; transform: translateX(-50%); }
+.d-pad-btn.left { left: 5px; top: 50%; transform: translateY(-50%); }
+.d-pad-btn.right { right: 5px; top: 50%; transform: translateY(-50%); }
+
+.d-pad-center {
+    width: 30px;
+    height: 30px;
+    background: #222;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Scientific Keys */
+.scientific-keys {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.sci-btn {
+    background: #2b2b2b;
+    border: none;
+    color: #eee;
+    height: 25px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 0 #111, 0 3px 3px rgba(0,0,0,0.4);
+    transition: all 0.1s;
+    font-family: sans-serif;
+}
+
+.sci-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 0px 0 #111, 0 1px 1px rgba(0,0,0,0.4);
+}
+
+/* Numpad Keys */
+.numpad-keys {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px 10px;
+}
+
+.numpad-keys button {
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.6), 0 4px 5px rgba(0,0,0,0.4);
+}
+
+.numpad-keys button:active {
+    transform: translateY(3px);
+    box-shadow: 0 0px 0 rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.num-btn {
+    background: #e0e0e0;
+    color: #111;
+}
+
+.op-btn {
+    background: #e0e0e0;
+    color: #111;
+}
+
+.del-btn, .ac-btn {
+    background: #a9d161; /* Bright green as in image */
+    color: #111;
+    font-size: 14px;
+}
+
+.exp-btn, .ans-btn, .eq-btn {
+    background: #e0e0e0;
+    color: #111;
+    font-size: 14px;
+}
+
+/* Hover effects */
+button:hover {
+    filter: brightness(1.1);
+}
