@@ -4,28 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentExpression = "";
   let lastResult = 0;
-  
+
   let isShiftActive = false;
   let isAlphaActive = false;
-  
+
   const shiftIndicator = document.getElementById("shift-indicator");
   const alphaIndicator = document.getElementById("alpha-indicator");
-  
+
   const memory = { A: 0, B: 0, C: 0, D: 0, E: 0, F: 0, X: 0, Y: 0, M: 0 };
 
   const updateDisplay = () => {
     expressionEl.innerText = currentExpression;
   };
-  
+
   const toggleShift = () => {
     isShiftActive = !isShiftActive;
-    if (shiftIndicator) shiftIndicator.style.visibility = isShiftActive ? "visible" : "hidden";
+    if (shiftIndicator)
+      shiftIndicator.style.visibility = isShiftActive ? "visible" : "hidden";
     if (isShiftActive && isAlphaActive) toggleAlpha();
   };
-  
+
   const toggleAlpha = () => {
     isAlphaActive = !isAlphaActive;
-    if (alphaIndicator) alphaIndicator.style.visibility = isAlphaActive ? "visible" : "hidden";
+    if (alphaIndicator)
+      alphaIndicator.style.visibility = isAlphaActive ? "visible" : "hidden";
     if (isAlphaActive && isShiftActive) toggleShift();
   };
 
@@ -65,8 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .replace(/ln\(/g, "log(")
         .replace(/π/g, "pi");
 
-      // Math.js expects angles in radians. 
-      // To parse degrees, we can append 'deg' inside simple trig functions
       evalExpr = evalExpr.replace(/(sin|cos|tan)\(([^)]+)\)/g, "$1($2 deg)");
 
       let openParens = (evalExpr.match(/\(/g) || []).length;
@@ -78,12 +78,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const scope = {
         lastResult: lastResult,
-        A: memory.A, B: memory.B, C: memory.C, D: memory.D, E: memory.E, F: memory.F, X: memory.X, Y: memory.Y, M: memory.M
+        A: memory.A,
+        B: memory.B,
+        C: memory.C,
+        D: memory.D,
+        E: memory.E,
+        F: memory.F,
+        X: memory.X,
+        Y: memory.Y,
+        M: memory.M,
       };
-      
+
       let result = math.evaluate(evalExpr, scope);
 
-      if (!Number.isInteger(result) && typeof result === 'number') {
+      if (!Number.isInteger(result) && typeof result === "number") {
         result = parseFloat(result.toPrecision(12));
       }
 
@@ -102,34 +110,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (action) {
         switch (action) {
-          case "ac": clearAll(); break;
-          case "del": deleteLast(); break;
-          case "calc": calculateResult(); break;
-          case "ans": appendToExpression("Ans"); break;
-          case "shift": toggleShift(); break;
-          case "alpha": toggleAlpha(); break;
+          case "ac":
+            clearAll();
+            break;
+          case "del":
+            deleteLast();
+            break;
+          case "calc":
+            calculateResult();
+            break;
+          case "ans":
+            appendToExpression("Ans");
+            break;
+          case "shift":
+            toggleShift();
+            break;
+          case "alpha":
+            toggleAlpha();
+            break;
         }
       } else if (val) {
         let actualVal = val;
         if (isShiftActive) {
-            if (val === "sin(") actualVal = "sin⁻¹(";
-            else if (val === "cos(") actualVal = "cos⁻¹(";
-            else if (val === "tan(") actualVal = "tan⁻¹(";
-            else if (val === "×10^") actualVal = "π";
-            else if (val === "log(") actualVal = "10^";
-            else if (val === "ln(") actualVal = "e^";
-            else if (val === "√(") actualVal = "³√(";
-            else if (val === "^-1") actualVal = "x!";
+          if (val === "sin(") actualVal = "sin⁻¹(";
+          else if (val === "cos(") actualVal = "cos⁻¹(";
+          else if (val === "tan(") actualVal = "tan⁻¹(";
+          else if (val === "×10^") actualVal = "π";
+          else if (val === "log(") actualVal = "10^";
+          else if (val === "ln(") actualVal = "e^";
+          else if (val === "√(") actualVal = "³√(";
+          else if (val === "^-1") actualVal = "x!";
         } else if (isAlphaActive) {
-            if (val === "-") actualVal = "A";
-            else if (val === "°") actualVal = "B";
-            else if (val === "hyp") actualVal = "C";
-            else if (val === "sin(") actualVal = "D";
-            else if (val === "cos(") actualVal = "E";
-            else if (val === "tan(") actualVal = "F";
-            else if (val === ")") actualVal = "X";
-            else if (val === "S<=>D") actualVal = "Y";
-            else if (val === "M+") actualVal = "M";
+          if (val === "-") actualVal = "A";
+          else if (val === "°") actualVal = "B";
+          else if (val === "hyp") actualVal = "C";
+          else if (val === "sin(") actualVal = "D";
+          else if (val === "cos(") actualVal = "E";
+          else if (val === "tan(") actualVal = "F";
+          else if (val === ")") actualVal = "X";
+          else if (val === "S<=>D") actualVal = "Y";
+          else if (val === "M+") actualVal = "M";
         }
         appendToExpression(actualVal);
       }
